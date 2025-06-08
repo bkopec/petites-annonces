@@ -1,0 +1,30 @@
+<div class="container">
+    @if (loading()) {
+      <p>Loading annonce details...</p>
+    } @else if (error()) {
+      <p class="error-message">{{ error() }}</p>
+      <a routerLink="/" class="back-link">Go to Home</a>
+    } @else if (annonce()) {
+      <div class="annonce-detail-card">
+        <h2 class="annonce-title">{{ annonce()?.title }}</h2>
+        <p class="annonce-meta">
+          Posted by {{ annonce()?.posterName }} in
+          <a [routerLink]="['/departement', annonce()?.departementCode]">
+            {{ annonce()?.departementName }} ({{ annonce()?.departementCode }})
+          </a>
+          on {{ annonce()?.createdAt | date:'medium' }}
+        </p>
+        <div class="annonce-content">
+          <p>{{ annonce()?.content }}</p>
+        </div>
+        <div class="actions">
+          <a [routerLink]="['/departement', annonce()?.departementCode]" class="back-button">
+            Back to {{ annonce()?.departementName }} Annonces
+          </a>
+        </div>
+      </div>
+    } @else {
+      <p>No annonce found with this ID.</p>
+      <a routerLink="/" class="back-link">Go to Home</a>
+    }
+  </div>

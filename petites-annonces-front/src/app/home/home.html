@@ -1,0 +1,23 @@
+<div class="container">
+    <h2>Choose a Department for Annonces</h2>
+  
+    @if (loading()) {
+      <p>Loading departments...</p>
+    } @else if (error()) {
+      <p class="error-message">{{ error() }}</p>
+    } @else {
+      <div class="departement-grid">
+        @for (dep of departements(); track dep.code) {
+          <div class="departement-card">
+            <a [routerLink]="['/departement', dep.code]">
+              <h3>{{ dep.depName }} ({{ dep.code }})</h3>
+              <p>{{ dep.regName }}</p>
+              </a>
+          </div>
+        }
+      </div>
+      @if (departements().length === 0) {
+        <p>No departments found.</p>
+      }
+    }
+  </div>

@@ -1,0 +1,42 @@
+<div class="container">
+    <button class="back-button" (click)="goBack()">Back to All Departments</button> @if (departementInfo()) {
+      <h2>Annonces in {{ departementInfo()?.depName }} ({{ departementInfo()?.code }})</h2>
+      <p class="region-info">Region: {{ departementInfo()?.regName }}</p>
+    } @else {
+      <h2>Annonces</h2>
+    }
+  
+    <a [routerLink]="['/departement', departementCode(), 'create-annonce']" class="new-annonce-button">
+      Create New Annonce
+    </a>
+  
+    @if (loadingAnnonces()) {
+      <p>Loading annonces...</p>
+    } @else if (error()) {
+      <p class="error-message">{{ error() }}</p>
+    } @else {
+      @if (annoncesPage().content.length > 0) {
+        <ul class="annonce-list">
+          @for (annonce of annoncesPage().content; track annonce.id) {
+            <li class="annonce-item">
+              <a [routerLink]="['/annonce', annonce.id]">
+                <h3>{{ annonce.title }}</h3>
+              </a>
+              <p>{{ annonce.content | slice:0:150 }}<span *ngIf="annonce.content.length > 150">...</span></p>
+              <div class="annonce-meta">
+                <span>Posted by {{ annonce.posterName }} on {{ annonce.createdAt | date:'short' }}</span>
+              </div>
+            </li>
+          }
+        </ul>
+  
+        <div class="pagination-controls">
+          <button (click)="goToPage(annoncesPage().number - 1)" [disabled]="annoncesPage().first">Previous</button>
+          <span>Page {{ annoncesPage().number + 1 }} of {{ annoncesPage().totalPages }}</span>
+          <button (click)="goToPage(annoncesPage().number + 1)" [disabled]="annoncesPage().last">Next</button>
+        </div>
+      } @else {
+        <p>No annonces found for this department. Be the first to post one!</p>
+      }
+    }
+  </div>

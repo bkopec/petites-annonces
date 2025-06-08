@@ -1,0 +1,14 @@
+footer p {
+    text-align: center;
+    color: #333;
+    font-size: 1em;
+}
+
+h1 {
+    text-align: center;
+    color: #234;
+    font-size: 2.2em;
+    font-family: 'Arial', sans-serif;
+    padding:15px;
+    border-bottom: 1px solid #333;
+}

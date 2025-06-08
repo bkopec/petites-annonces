@@ -1,0 +1,58 @@
+<div class="container">
+    @if (departementName()) {
+      <h2>Create New Annonce for {{ departementName() }} ({{ departementCode() }})</h2>
+    } @else {
+      <h2>Create New Annonce</h2>
+    }
+  
+    <form [formGroup]="annonceForm" (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <label for="title">Title:</label>
+        <input type="text" id="title" formControlName="title" placeholder="e.g., Selling a vintage bike">
+        @if (annonceForm.get('title')?.invalid && (annonceForm.get('title')?.dirty || annonceForm.get('title')?.touched)) {
+          <div class="error-message">
+            @if (annonceForm.get('title')?.errors?.['required']) {
+              Title is required.
+            } @else if (annonceForm.get('title')?.errors?.['maxlength']) {
+              Title cannot exceed 255 characters.
+            }
+          </div>
+        }
+      </div>
+  
+      <div class="form-group">
+        <label for="content">Content:</label>
+        <textarea id="content" formControlName="content" rows="6" placeholder="Describe your annonce in detail..."></textarea>
+        @if (annonceForm.get('content')?.invalid && (annonceForm.get('content')?.dirty || annonceForm.get('content')?.touched)) {
+          <div class="error-message">
+            @if (annonceForm.get('content')?.errors?.['required']) {
+              Content is required.
+            }
+          </div>
+        }
+      </div>
+  
+      <div class="form-group">
+        <label for="posterName">Your Name:</label>
+        <input type="text" id="posterName" formControlName="posterName" placeholder="Your name (e.g., John Doe)">
+        @if (annonceForm.get('posterName')?.invalid && (annonceForm.get('posterName')?.dirty || annonceForm.get('posterName')?.touched)) {
+          <div class="error-message">
+            @if (annonceForm.get('posterName')?.errors?.['required']) {
+              Your name is required.
+            } @else if (annonceForm.get('posterName')?.errors?.['maxlength']) {
+              Your name cannot exceed 100 characters.
+            }
+          </div>
+        }
+      </div>
+  
+      @if (submitError()) {
+        <p class="submit-error-message">{{ submitError() }}</p>
+      }
+  
+      <button type="submit" [disabled]="loadingSubmit()">
+        {{ loadingSubmit() ? 'Creating...' : 'Post Annonce' }}
+      </button>
+      <a [routerLink]="['/departement', departementCode()]" class="cancel-button">Cancel</a>
+    </form>
+  </div>

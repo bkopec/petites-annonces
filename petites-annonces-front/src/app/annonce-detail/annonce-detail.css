@@ -1,0 +1,88 @@
+.container {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  }
+  
+  .annonce-detail-card {
+    border: 1px solid #e0e0e0;
+    border-radius: 10px;
+    padding: 30px;
+    background-color: #fcfcfc;
+  }
+  
+  .annonce-title {
+    color: #007bff;
+    margin-top: 0;
+    margin-bottom: 15px;
+    font-size: 2.2em;
+    text-align: center;
+  }
+  
+  .annonce-meta {
+    font-size: 0.9em;
+    color: #777;
+    text-align: center;
+    margin-bottom: 25px;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 15px;
+  }
+  
+  .annonce-meta a {
+    color: #28a745;
+    font-weight: bold;
+    text-decoration: none;
+  }
+  
+  .annonce-meta a:hover {
+    text-decoration: underline;
+  }
+  
+  .annonce-content {
+    font-size: 1.1em;
+    line-height: 1.6;
+    color: #333;
+    white-space: pre-wrap; /* Preserves whitespace and line breaks */
+    margin-bottom: 30px;
+  }
+  
+  .actions {
+    text-align: center;
+  }
+  
+  .back-button {
+    display: inline-block;
+    padding: 12px 25px;
+    background-color: #6c757d;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.2s ease;
+    font-size: 1em;
+  }
+  
+  .back-button:hover {
+    background-color: #5a6268;
+  }
+  
+  .error-message {
+    color: #dc3545;
+    text-align: center;
+    font-weight: bold;
+    margin-bottom: 15px;
+  }
+  
+  .back-link {
+    display: block;
+    text-align: center;
+    margin-top: 20px;
+    color: #007bff;
+    text-decoration: none;
+  }
+  
+  .back-link:hover {
+    text-decoration: underline;
+  }
